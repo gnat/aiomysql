@@ -215,6 +215,15 @@ class Cursor:
             query = query % self._escape_args(args, conn)
         return query
 
+    def preview(self, query, args=None):
+        """ Alias for mogrify. Returns the exact string that is sent to the 
+        database by calling the execute() method.
+
+        :param query: ``str`` sql statement
+        :param args: ``tuple`` or ``list`` of arguments for sql query
+        """
+        return mogrify(self, query, args)
+
     async def execute(self, query, args=None):
         """Executes the given operation
 
